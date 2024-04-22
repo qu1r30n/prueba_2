@@ -663,7 +663,7 @@ namespace chatbot_wathsapp.clases
 
             string[] grupos_en_los_que_esta = pociciones_en_los_que_se_encutra(nombre);
             bool esta_en_confirmadores = false;
-            <<
+            
             if (grupos_en_los_que_esta != null)
             {
                 for (int i = 0; i < grupos_en_los_que_esta.Length; i++)
