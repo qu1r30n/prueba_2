@@ -371,13 +371,13 @@ namespace chatbot_wathsapp.clases
 
             string añomesdiahoraminseg = DateTime.Now.ToString("yyMMddHHmmss");
             string folio = generar_folio(añomesdiahoraminseg);
-            mensage_supervisores = nombre_Del_que_envio_el_mensage + "\n" + mensage_supervisores + "\n" + folio;
-            mensage_repartidores = nombre_Del_que_envio_el_mensage + "\n" + mensage_repartidores + "\n" + folio;
-            mensage_confirmadores = nombre_Del_que_envio_el_mensage + "\n" + mensage_confirmadores + "\n" + folio;
-            mensage_tesorero = nombre_Del_que_envio_el_mensage + "\n" + mensage_tesorero + "\n" + folio;
+            mensage_supervisores = nombre_Del_que_envio_el_mensage + "\n" + mensage_supervisores + "\n total a pagar: " + total_a_pagar_de_todo + "\n" + folio;
+            mensage_repartidores = nombre_Del_que_envio_el_mensage + "\n" + mensage_repartidores + "\n total a pagar: " + total_a_pagar_de_todo + "\n" + folio;
+            mensage_confirmadores = nombre_Del_que_envio_el_mensage + "\n" + mensage_confirmadores + "\n total a pagar: " + total_a_pagar_de_todo + "\n" + folio;
+            mensage_tesorero = nombre_Del_que_envio_el_mensage + "\n" + mensage_tesorero + "\n total a pagar: " + total_a_pagar_de_todo + "\n" + folio;
 
             mensage_encargados = mensage_encargados + "\n" + folio;
-            mensage_contadores = mensage_contadores + "\n" + folio;
+            mensage_contadores = mensage_contadores + "\n total a pagar: " + total_a_pagar_de_todo + "\n" + folio;
 
             respuesta_de_mensaje = respuesta_de_mensaje + "\n" + folio;
 
