@@ -1,1 +1,4 @@
 folio_venta|añomesdiahoraminutosegundo|total|operacion|producto1¬precio1°pedido2¬precio2|vendedor|num_celular_vendedor|repartidor|datos_comprador°datos_comprador|datos_extra1°dato_extra2
+084501cn240423084501|20240423084501|3|venta|1¬producto3¬3|no_es_vendedor|Prueba|repartidor|datos_comprador|datos_extras
+084634b240423084634|20240423084634|7|venta|2¬producto2¬4°1¬producto3¬3|no_es_vendedor|Prueba|repartidor|datos_comprador|datos_extras
+0938442u240423093844|20240423093908|3|venta|1¬producto3¬3|no_es_vendedor|Prueba|repartidor|datos_comprador|datos_extras

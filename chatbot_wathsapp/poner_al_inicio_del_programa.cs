@@ -51,7 +51,7 @@ namespace chatbot_wathsapp.clases
                 /*17*/ "config\\chatbot\\05_encargados.txt~nombre_o_numero_de_telefono_que_aparece_en_el_watsap~Encargados",
                 /*18*/ "config\\chatbot\\06_supervisores.txt~nombre_o_numero_de_telefono_que_aparece_en_el_watsap~Supervisores",
                 /*19*/ "config\\chatbot\\07_contadores.txt~nombre_o_numero_de_telefono_que_aparece_en_el_watsap~Contadores",
-                /*20*/ "config\\chatbot\\08_vendedores.txt~nombre_o_numero_de_telefono_que_aparece_en_el_watsap~Prueba",
+                /*20*/ "config\\chatbot\\08_vendedores.txt~nombre_o_numero_de_telefono_que_aparece_en_el_watsap~Vendedores",
                 /*21*/ "config\\chatbot\\09_repartidores.txt~nombre_o_numero_de_telefono_que_aparece_en_el_watsap~Repartidores",
                 /*22*/ "config\\chatbot\\10_reg_mensaje.txt~nombre_o_numero_de_telefono_que_aparece_en_el_watsap_y_envia_todos_los_mensajes_recibidos~Reg_mensaje",
                 
