@@ -348,6 +348,8 @@ namespace chatbot_wathsapp.clases
             string mensage_confirmadores = "";
 
             string respuesta_de_mensaje = "";
+
+            string texto_para_registro_foliado = "";
             for (int i = 0; i < cantidad_de_productos.Length; i++)
             {
                 if (cantidad_de_productos[i] != 0)
@@ -359,9 +361,16 @@ namespace chatbot_wathsapp.clases
                     mensage_confirmadores = mensage_confirmadores + nombre_de_productos[i] + "\ncantidad: " + cantidad_de_productos[i] + "\n";
                     mensage_tesorero = mensage_tesorero + nombre_de_productos[i] + "\ncantidad: " + cantidad_de_productos[i] + "\n";
                     respuesta_de_mensaje = respuesta_de_mensaje + nombre_de_productos[i] + "\ncantidad: " + cantidad_de_productos[i] + " p/u:" + precio_unitario[i] + "  $" + precio_a_pagar_por_producto[i] + "\n";
+
+                    texto_para_registro_foliado = op_tex.concatenacion_caracter_separacion(texto_para_registro_foliado, cantidad_de_productos[i] + G_caracter_separacion[2] + nombre_de_productos[i] + G_caracter_separacion[2] + precio_unitario[i] + G_caracter_separacion[2] + precio_a_pagar_por_producto[i], G_caracter_separacion[1]);
+
+
+
                 }
             }
-            string folio = generar_folio();
+
+            string añomesdiahoraminseg = DateTime.Now.ToString("yyMMddHHmmss");
+            string folio = generar_folio(añomesdiahoraminseg);
             mensage_supervisores = nombre_Del_que_envio_el_mensage + "\n" + mensage_supervisores + "\n" + folio;
             mensage_repartidores = nombre_Del_que_envio_el_mensage + "\n" + mensage_repartidores + "\n" + folio;
             mensage_confirmadores = nombre_Del_que_envio_el_mensage + "\n" + mensage_confirmadores + "\n" + folio;
@@ -380,7 +389,7 @@ namespace chatbot_wathsapp.clases
             acumulador_de_mensajes(G_contactos_lista_para_mandar_informacion[6, 1], mensage_tesorero);
             acumulador_de_mensajes(G_contactos_lista_para_mandar_informacion[9, 1], mensage_confirmadores);
 
-
+            registros_y_movimientos_a_confirmar(nombre_Del_que_envio_el_mensage, añomesdiahoraminseg, folio, "" + total_a_pagar_de_todo, texto_para_registro_foliado);
 
             //mandar mensages
             string[,] mensajes_para_y_mensaje = acumulador_de_mensajes(operacion: "retornar");
@@ -858,11 +867,57 @@ namespace chatbot_wathsapp.clases
 
         }
 
-        public string generar_folio()
+        public string generar_folio(string añomesdiahoraminseg = null)
         {
-            string folio = GenerarCadenaConFechaHoraAleatoria(4) + "" + DateTime.Now.ToString("yyMMddHHmmss");
+            string folio = "";
+
+            if (añomesdiahoraminseg==null)
+            {
+                folio = GenerarCadenaConFechaHoraAleatoria(4) + "" + DateTime.Now.ToString("yyMMddHHmmss");
+            }
+            else
+            {
+                folio = GenerarCadenaConFechaHoraAleatoria(4) + "" + DateTime.Now.ToString(añomesdiahoraminseg);
+            }
+            
             folio = folio.ToLower();
             return folio;
+        }
+
+
+        public void registros_y_movimientos_a_confirmar(string nom_mensage_clickeado, string añomesdiahoraminseg, string folio, string total, string respuesta_de_mensaje_para_folio)
+        {
+            //registros y confirmaciones-----------------------------------------------------------------------------------
+
+            //agregar archivos registros
+
+            int indice_folios = Convert.ToInt32(bas.sacar_indice_del_arreglo_de_direccion(G_dir_para_registros_y_configuraciones[0, 0]));
+
+
+            string carpetas = op_tex.joineada_paraesida_y_quitador_de_extremos_del_string(G_dir_arch_mensages[0], "\\", 1);
+            string dir_archivo_v_usuarios = carpetas + "\\reg\\" + DateTime.Now.ToString("yyyyMMdd") + "_v_us.txt";
+            string dir_archivo_reg = carpetas + "\\reg\\" + DateTime.Now.ToString("yyyyMMdd") + "_reg.txt";
+            int indice_nego = Convert.ToInt32(bas.sacar_indice_del_arreglo_de_direccion(G_direccion_negocio));
+
+
+            string usuario = op_arr.busqueda_profunda_arreglo(Tex_base.GG_base_arreglo_de_arreglos[indice_nego], "8|6", nom_mensage_clickeado, donde_iniciar: 1);
+
+            if (usuario != null)
+            {
+                string[] usuario_espliteado = usuario.Split(G_caracter_separacion[0][0]);
+                string tem_info_si_no_es_vendedor = folio + G_caracter_separacion[0] + añomesdiahoraminseg + G_caracter_separacion[0] + total + G_caracter_separacion[0] + "venta" + G_caracter_separacion[0] + respuesta_de_mensaje_para_folio + G_caracter_separacion[0] + usuario_espliteado[0] + G_caracter_separacion[0] + nom_mensage_clickeado + G_caracter_separacion[0] + "repartidor" + G_caracter_separacion[0] + "datos_comprador" + G_caracter_separacion[0] + "datos_extras";
+                bas.Agregar(G_dir_para_registros_y_configuraciones[0, 0], tem_info_si_no_es_vendedor);
+
+            }
+
+            else
+            {
+
+                string tem_info = folio + G_caracter_separacion[0] + añomesdiahoraminseg + G_caracter_separacion[0] + total + G_caracter_separacion[0] + "venta" + G_caracter_separacion[0] + respuesta_de_mensaje_para_folio + G_caracter_separacion[0] + "no_es_vendedor" + G_caracter_separacion[0] + nom_mensage_clickeado + G_caracter_separacion[0] + "repartidor" + G_caracter_separacion[0] + "datos_comprador" + G_caracter_separacion[0] + "datos_extras";
+                bas.Agregar(G_dir_para_registros_y_configuraciones[0, 0], tem_info);
+            }
+
+            //fin registros y confirmaciones---------------------------------------------------------------------------------------------------------
         }
 
     }
