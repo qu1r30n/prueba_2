@@ -274,7 +274,8 @@ namespace chatbot_wathsapp.clases
                             case "ubi":
 
                                 contactos = G_contactos_lista_para_mandar_informacion[1, 1] + G_caracter_separacion[0] + G_contactos_lista_para_mandar_informacion[4, 1] + G_caracter_separacion[0] + G_contactos_lista_para_mandar_informacion[5, 1];
-                                respuesta_a_mandar_mensage = nombre_Del_que_envio_el_mensage + "\nubicacion recibida: " + G_caracter_separacion_funciones_espesificas[0];
+                                respuesta_a_mandar_mensage = nombre_Del_que_envio_el_mensage + "\nubicacion recibida: " + G_caracter_separacion[0] + "\n" + ultimo_mensaje_espliteado[1];
+                                string[] mensage_espliteado=respuesta_a_mandar_mensage.Split('\n');
                                 acumulador_de_mensajes(contactos, respuesta_a_mandar_mensage);
                                 break;
 
@@ -333,7 +334,11 @@ namespace chatbot_wathsapp.clases
                     }
                     else
                     {
-
+                        acumulador_de_mensajes(nombre_Del_que_envio_el_mensage, mensage_bienvenida_total);
+                        // error manda mensaje de bienvenvenida y mensage a registros
+                        contactos = G_contactos_lista_para_mandar_informacion[5, 1];
+                        respuesta_a_mandar_mensage = nombre_Del_que_envio_el_mensage + "\n" + ultimo_mensaje + "\n" + "------------------------------------------------------------------------";
+                        acumulador_de_mensajes(contactos, respuesta_a_mandar_mensage);
                     }
 
                 }
@@ -350,6 +355,7 @@ namespace chatbot_wathsapp.clases
             string respuesta_de_mensaje = "";
 
             string texto_para_registro_foliado = "";
+            bool hubo_pedido = false;
             for (int i = 0; i < cantidad_de_productos.Length; i++)
             {
                 if (cantidad_de_productos[i] != 0)
@@ -364,60 +370,68 @@ namespace chatbot_wathsapp.clases
 
                     texto_para_registro_foliado = op_tex.concatenacion_caracter_separacion(texto_para_registro_foliado, cantidad_de_productos[i] + G_caracter_separacion[2] + nombre_de_productos[i] + G_caracter_separacion[2] + precio_unitario[i] + G_caracter_separacion[2] + precio_a_pagar_por_producto[i], G_caracter_separacion[1]);
 
-
+                    hubo_pedido = true;
 
                 }
             }
+            if (hubo_pedido)
+            {
 
-            string añomesdiahoraminseg = DateTime.Now.ToString("yyMMddHHmmss");
-            string folio = generar_folio(añomesdiahoraminseg);
-            mensage_supervisores = nombre_Del_que_envio_el_mensage + "\n" + mensage_supervisores + "\n total a pagar: " + total_a_pagar_de_todo + "\n" + folio;
-            mensage_repartidores = nombre_Del_que_envio_el_mensage + "\n" + mensage_repartidores + "\n total a pagar: " + total_a_pagar_de_todo + "\n" + folio;
-            mensage_confirmadores = nombre_Del_que_envio_el_mensage + "\n" + mensage_confirmadores + "\n total a pagar: " + total_a_pagar_de_todo + "\n" + folio;
-            mensage_tesorero = nombre_Del_que_envio_el_mensage + "\n" + mensage_tesorero + "\n total a pagar: " + total_a_pagar_de_todo + "\n" + folio;
 
-            mensage_encargados = mensage_encargados + "\n" + folio;
-            mensage_contadores = mensage_contadores + "\n total a pagar: " + total_a_pagar_de_todo + "\n" + folio;
+                string añomesdiahoraminseg = DateTime.Now.ToString("yyMMddHHmmss");
+                string folio = generar_folio(añomesdiahoraminseg);
+                mensage_supervisores = nombre_Del_que_envio_el_mensage + "\n" + mensage_supervisores + "\n total a pagar: " + total_a_pagar_de_todo + "\n" + folio;
+                mensage_repartidores = nombre_Del_que_envio_el_mensage + "\n" + mensage_repartidores + "\n total a pagar: " + total_a_pagar_de_todo + "\n" + folio;
+                mensage_confirmadores = nombre_Del_que_envio_el_mensage + "\n" + mensage_confirmadores + "\n total a pagar: " + total_a_pagar_de_todo + "\n" + folio;
+                mensage_tesorero = nombre_Del_que_envio_el_mensage + "\n" + mensage_tesorero + "\n total a pagar: " + total_a_pagar_de_todo + "\n" + folio;
 
-            respuesta_de_mensaje = respuesta_de_mensaje + "\n" + folio;
+                mensage_encargados = mensage_encargados + "\n" + folio;
+                mensage_contadores = mensage_contadores + "\n total a pagar: " + total_a_pagar_de_todo + "\n" + folio;
 
-            acumulador_de_mensajes(G_contactos_lista_para_mandar_informacion[0, 1], mensage_encargados);
-            acumulador_de_mensajes(G_contactos_lista_para_mandar_informacion[1, 1], mensage_supervisores);
-            acumulador_de_mensajes(G_contactos_lista_para_mandar_informacion[2, 1], mensage_contadores);
-            acumulador_de_mensajes(G_contactos_lista_para_mandar_informacion[4, 1], mensage_repartidores);
-            acumulador_de_mensajes(G_contactos_lista_para_mandar_informacion[5, 1], mensage_supervisores);
-            acumulador_de_mensajes(G_contactos_lista_para_mandar_informacion[6, 1], mensage_tesorero);
-            acumulador_de_mensajes(G_contactos_lista_para_mandar_informacion[9, 1], mensage_confirmadores);
+                respuesta_de_mensaje = respuesta_de_mensaje + "\n" + folio;
 
-            registros_y_movimientos_a_confirmar(nombre_Del_que_envio_el_mensage, añomesdiahoraminseg, folio, "" + total_a_pagar_de_todo, texto_para_registro_foliado);
+                acumulador_de_mensajes(G_contactos_lista_para_mandar_informacion[0, 1], mensage_encargados);
+                acumulador_de_mensajes(G_contactos_lista_para_mandar_informacion[1, 1], mensage_supervisores);
+                acumulador_de_mensajes(G_contactos_lista_para_mandar_informacion[2, 1], mensage_contadores);
+                acumulador_de_mensajes(G_contactos_lista_para_mandar_informacion[4, 1], mensage_repartidores);
+                acumulador_de_mensajes(G_contactos_lista_para_mandar_informacion[5, 1], mensage_supervisores);
+                acumulador_de_mensajes(G_contactos_lista_para_mandar_informacion[6, 1], mensage_tesorero);
+                acumulador_de_mensajes(G_contactos_lista_para_mandar_informacion[9, 1], mensage_confirmadores);
 
+                registros_y_movimientos_a_confirmar(nombre_Del_que_envio_el_mensage, añomesdiahoraminseg, folio, "" + total_a_pagar_de_todo, texto_para_registro_foliado);
+            }
             //mandar mensages
             string[,] mensajes_para_y_mensaje = acumulador_de_mensajes(operacion: "retornar");
-            for (int i = 0; i < mensajes_para_y_mensaje.GetLength(0); i++)
+            
+
+            
+            
+            if (mensajes_para_y_mensaje != null)
             {
-                if (mensajes_para_y_mensaje[i, 0] != "usuario_actual")
+                for (int i = 0; i < mensajes_para_y_mensaje.GetLength(0); i++)
                 {
-
-                    for (int k = i + 1; k < mensajes_para_y_mensaje.GetLength(0); k++)
+                    if (mensajes_para_y_mensaje[i, 0] != "usuario_actual")
                     {
-                        if (mensajes_para_y_mensaje[k, 0] == "usuario_actual")
+
+                        for (int k = i + 1; k < mensajes_para_y_mensaje.GetLength(0); k++)
                         {
-                            // Almacenar la fila actual en una variable temporal
-                            string tempUsuario = mensajes_para_y_mensaje[i, 0];
-                            string tempMensaje = mensajes_para_y_mensaje[i, 1];
+                            if (mensajes_para_y_mensaje[k, 0] == "usuario_actual")
+                            {
+                                // Almacenar la fila actual en una variable temporal
+                                string tempUsuario = mensajes_para_y_mensaje[i, 0];
+                                string tempMensaje = mensajes_para_y_mensaje[i, 1];
 
-                            // Intercambiar toda la fila
-                            mensajes_para_y_mensaje[i, 0] = mensajes_para_y_mensaje[k, 0];
-                            mensajes_para_y_mensaje[i, 1] = mensajes_para_y_mensaje[k, 1];
-                            mensajes_para_y_mensaje[k, 0] = tempUsuario;
-                            mensajes_para_y_mensaje[k, 1] = tempMensaje;
+                                // Intercambiar toda la fila
+                                mensajes_para_y_mensaje[i, 0] = mensajes_para_y_mensaje[k, 0];
+                                mensajes_para_y_mensaje[i, 1] = mensajes_para_y_mensaje[k, 1];
+                                mensajes_para_y_mensaje[k, 0] = tempUsuario;
+                                mensajes_para_y_mensaje[k, 1] = tempMensaje;
 
+                            }
                         }
                     }
                 }
-            }
-            if (mensajes_para_y_mensaje != null)
-            {
+
                 for (int i = 0; i < mensajes_para_y_mensaje.GetLength(0); i++)
                 {
                     mandar_mensage_usuarios(manejadores, esperar, mensajes_para_y_mensaje[i, 0], mensajes_para_y_mensaje[i, 1]);
@@ -487,8 +501,9 @@ namespace chatbot_wathsapp.clases
                         int indice_supervisor = Convert.ToInt32(bas.sacar_indice_del_arreglo_de_direccion(G_contactos_lista_para_mandar_informacion[h, 0]));
                         for (int l = G_donde_inicia_la_tabla; l < Tex_base.GG_base_arreglo_de_arreglos[indice_supervisor].Length; l++)
                         {
-                            buscar_nombre_y_dar_click(manejadores, esperar, Tex_base.GG_base_arreglo_de_arreglos[indice_supervisor][l]);
-                            mandar_mensage(esperar, mensage_espliteados[k]);
+                            string temp = Tex_base.GG_base_arreglo_de_arreglos[indice_supervisor][l];
+                            buscar_nombre_y_dar_click(manejadores, esperar, temp);
+                            mandar_mensage(esperar, mensage_espliteados[0]);
                             si_es_supervisor = true;
                         }
 
@@ -504,7 +519,8 @@ namespace chatbot_wathsapp.clases
                     }
                     else
                     {
-                        buscar_nombre_y_dar_click(manejadores, esperar, contacto_o_grupo[k]);
+                        string temp= contacto_o_grupo[k];
+                        buscar_nombre_y_dar_click(manejadores, esperar, temp);
                         mandar_mensage(esperar, mensage_espliteados[k]);
                     }
                 }
@@ -849,7 +865,11 @@ namespace chatbot_wathsapp.clases
         {
             if (operacion == "agregar")
             {
-                mensajes_acumulados = op_arr.agregar_registro_del_array_bidimensional(mensajes_acumulados, nombre + G_caracter_separacion_funciones_espesificas[0] + mensge, G_caracter_separacion_funciones_espesificas[0]);
+                string[] nom_split = nombre.Split(G_caracter_separacion[0][0]);
+                for (int i = 0; i < nom_split.Length; i++)
+                {
+                    mensajes_acumulados = op_arr.agregar_registro_del_array_bidimensional(mensajes_acumulados, nom_split[i] + G_caracter_separacion_funciones_espesificas[0] + mensge, G_caracter_separacion_funciones_espesificas[0]);
+                }
                 return null;
             }
             else if (operacion == "retornar")

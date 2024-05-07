@@ -3,3 +3,20 @@ folio_venta|añomesdiahoraminutosegundo|total|operacion|producto1¬precio1°pedi
 084634b240423084634|20240423084634|7|venta|2¬producto2¬4°1¬producto3¬3|no_es_vendedor|Prueba|repartidor|datos_comprador|datos_extras
 0938442u240423093844|20240423093908|3|venta|1¬producto3¬3|no_es_vendedor|Prueba|repartidor|datos_comprador|datos_extras
 193826g240423193826|240423193826|7|venta|2¬producto2¬2¬4°1¬producto3¬3¬3|no_es_vendedor|Prueba|repartidor|datos_comprador|datos_extras
+120730ttk240424120730|240424120730|0|venta||no_es_vendedor|Tikets próximo pagar|repartidor|datos_comprador|datos_extras
+113933z240507113933|240507113933|0|venta||no_es_vendedor|Prueba|repartidor|datos_comprador|datos_extras
+114104sa240507114104|240507114104|0|venta||no_es_vendedor|Prueba|repartidor|datos_comprador|datos_extras
+122549do240507122549|240507122549|125|venta|1¬albondigas¬75¬75°1¬molletes¬50¬50|no_es_vendedor|Prueba|repartidor|datos_comprador|datos_extras
+123157gek240507123157|240507123157|125|venta|1¬albondigas¬75¬75°1¬molletes¬50¬50|no_es_vendedor|Prueba|repartidor|datos_comprador|datos_extras
+123731q4240507123731|240507123731|125|venta|1¬albondigas¬75¬75°1¬molletes¬50¬50|no_es_vendedor|Prueba|repartidor|datos_comprador|datos_extras
+123827wf240507123827|240507123827|125|venta|1¬albondigas¬75¬75°1¬molletes¬50¬50|no_es_vendedor|Prueba|repartidor|datos_comprador|datos_extras
+124005vn240507124005|240507124005|125|venta|1¬albondigas¬75¬75°1¬molletes¬50¬50|no_es_vendedor|Prueba|repartidor|datos_comprador|datos_extras
+124316240507124316|240507124316|125|venta|1¬albondigas¬75¬75°1¬molletes¬50¬50|no_es_vendedor|Prueba|repartidor|datos_comprador|datos_extras
+124527td240507124527|240507124527|125|venta|1¬albondigas¬75¬75°1¬molletes¬50¬50|no_es_vendedor|Prueba|repartidor|datos_comprador|datos_extras
+130024c240507130024|240507130024|125|venta|1¬albondigas¬75¬75°1¬molletes¬50¬50|no_es_vendedor|Prueba|repartidor|datos_comprador|datos_extras
+130416x4240507130416|240507130416|125|venta|1¬albondigas¬75¬75°1¬molletes¬50¬50|no_es_vendedor|Prueba|repartidor|datos_comprador|datos_extras
+130630240507130630|240507130630|125|venta|1¬albondigas¬75¬75°1¬molletes¬50¬50|no_es_vendedor|Prueba|repartidor|datos_comprador|datos_extras
+131301240507131301|240507131301|125|venta|1¬albondigas¬75¬75°1¬molletes¬50¬50|no_es_vendedor|Prueba|repartidor|datos_comprador|datos_extras
+131615u1240507131615|240507131615|125|venta|1¬albondigas¬75¬75°1¬molletes¬50¬50|no_es_vendedor|Prueba|repartidor|datos_comprador|datos_extras
+171007day240507171007|240507171007|125|venta|1¬albondigas¬75¬75°1¬molletes¬50¬50|no_es_vendedor|Prueba|repartidor|datos_comprador|datos_extras
+171534xq240507171534|240507171534|125|venta|1¬albondigas¬75¬75°1¬molletes¬50¬50|no_es_vendedor|Prueba|repartidor|datos_comprador|datos_extras
