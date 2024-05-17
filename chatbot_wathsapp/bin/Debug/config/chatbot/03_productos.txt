@@ -1,13 +1,13 @@
 nombre_del_producto|precio
-albondigas| 75
-rollo de pollo| 75
-club sanwich| 60
-chilaquiles|50
-pollo a la kentoky|75
-molletes|50
 pechuga asada|75
 enmoladas|50
 coctel de frutas|50
 pechuga rellena|75
 enchiladas suisas|50
 bistec a la mexicana|75
+pollo en salsa de queso| 75
+rollo de pollo| 75
+club sanwich| 60
+chilaquiles|50
+pollo a la kentoky|75
+molletes|50

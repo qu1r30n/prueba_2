@@ -778,7 +778,7 @@ namespace chatbot_wathsapp.clases
                                         if ("venta" == movimiento_a_confirmar[3])
                                         {
                                             mandar_mensage(esperar, "mensage enviado a la persona del pedido");
-                                            mandar_mensage_usuarios(manejadores, esperar, movimiento_a_confirmar[6], "esta en proceso tu pedido\n" + movimiento_a_confirmar[0] + "\n------------------------------------------------");
+                                            mandar_mensage_usuarios(manejadores, esperar, movimiento_a_confirmar[6], "esta en proceso tu pedido tarda entre 20 y 40 minutos en llegar\n" + movimiento_a_confirmar[0] + "\n------------------------------------------------");
 
                                         }
                                     }

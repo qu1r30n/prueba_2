@@ -20,3 +20,4 @@ folio_venta|añomesdiahoraminutosegundo|total|operacion|producto1¬precio1°pedi
 131615u1240507131615|240507131615|125|venta|1¬albondigas¬75¬75°1¬molletes¬50¬50|no_es_vendedor|Prueba|repartidor|datos_comprador|datos_extras
 171007day240507171007|240507171007|125|venta|1¬albondigas¬75¬75°1¬molletes¬50¬50|no_es_vendedor|Prueba|repartidor|datos_comprador|datos_extras
 171534xq240507171534|240507171534|125|venta|1¬albondigas¬75¬75°1¬molletes¬50¬50|no_es_vendedor|Prueba|repartidor|datos_comprador|datos_extras
+113648u240508113648|240508113648|125|venta|1¬pollo en salsa de queso¬75¬75°1¬molletes¬50¬50|no_es_vendedor|Prueba|repartidor|datos_comprador|datos_extras
