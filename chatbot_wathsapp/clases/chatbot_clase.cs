@@ -202,241 +202,247 @@ namespace chatbot_wathsapp.clases
         {
             recargar_arreglos();
 
-            string[] textos_recibidos_srting_arr = op_arr.convierte_objeto_a_arreglo(texto_recibidos_arreglo_objeto);
-
-
-            string ultimo_mensaje = textos_recibidos_srting_arr[textos_recibidos_srting_arr.Length - 1];
-            
-            int indice_productos = Convert.ToInt32(bas.sacar_indice_del_arreglo_de_direccion(G_dir_arch_mensages[2]));
-
-
-            string[] nombre_de_productos = new string[Tex_base.GG_base_arreglo_de_arreglos[indice_productos].Length];
-            double[] precio_unitario = new double[Tex_base.GG_base_arreglo_de_arreglos[indice_productos].Length];
-            double[] precio_a_pagar_por_producto = new double[Tex_base.GG_base_arreglo_de_arreglos[indice_productos].Length];
-            double[] cantidad_de_productos = new double[Tex_base.GG_base_arreglo_de_arreglos[indice_productos].Length];
-
-
-
-            string mensaje_de_bienvenida_a_enviar = op_tex.concatenacion_filas_de_un_archivo(G_dir_arch_mensages[0]);
-            string mensaje_de_productos_a_enviar = null;
-            string mensaje_de_bienvenida_final_a_enviar = op_tex.concatenacion_filas_de_un_archivo(G_dir_arch_mensages[1]);
-
-
-            string mensage_bienvenida_total = null;
-
-
-            double total_a_pagar_de_todo = 0;
-            string respuesta_a_mandar_mensage = "";
-
-            bool hubo_platillos = false;
-
-
-            //ultimo_mensaje = ultimo_mensaje.ToLower();
-            ultimo_mensaje = ultimo_mensaje.Replace(" ", "");
-            ultimo_mensaje = ultimo_mensaje.Replace(G_caracter_separacion_funciones_espesificas[2] + G_caracter_separacion_funciones_espesificas[2], "\r\n");
-            ultimo_mensaje = ultimo_mensaje.Replace(G_caracter_separacion_funciones_espesificas[2], "\r\n");
-            string[] lineas_del_mensaje = ultimo_mensaje.Split(new string[] { "\r\n" }, StringSplitOptions.None);
-            for (int j = 0; j < lineas_del_mensaje.Length; j++)
+            //la comparacion de registro y vendedores es temporal por que se deve hacer desde los archivos
+            if (nombre_Del_que_envio_el_mensage != "Reg_mensaje") 
             {
 
-                bool si_confirmo = confirmaciones_de_usuarios_confirmadores_o_funciones_extras(manejadores, esperar, nombre_Del_que_envio_el_mensage, lineas_del_mensaje, ":");
-                //aqui si hay modificaciones en el mensage-----------------------------------------------------------
-                
-                if (G_mod_cont != null)
+
+                string[] textos_recibidos_srting_arr = op_arr.convierte_objeto_a_arreglo(texto_recibidos_arreglo_objeto);
+
+
+                string ultimo_mensaje = textos_recibidos_srting_arr[textos_recibidos_srting_arr.Length - 1];
+
+                int indice_productos = Convert.ToInt32(bas.sacar_indice_del_arreglo_de_direccion(G_dir_arch_mensages[2]));
+
+
+                string[] nombre_de_productos = new string[Tex_base.GG_base_arreglo_de_arreglos[indice_productos].Length];
+                double[] precio_unitario = new double[Tex_base.GG_base_arreglo_de_arreglos[indice_productos].Length];
+                double[] precio_a_pagar_por_producto = new double[Tex_base.GG_base_arreglo_de_arreglos[indice_productos].Length];
+                double[] cantidad_de_productos = new double[Tex_base.GG_base_arreglo_de_arreglos[indice_productos].Length];
+
+
+
+                string mensaje_de_bienvenida_a_enviar = op_tex.concatenacion_filas_de_un_archivo(G_dir_arch_mensages[0]);
+                string mensaje_de_productos_a_enviar = null;
+                string mensaje_de_bienvenida_final_a_enviar = op_tex.concatenacion_filas_de_un_archivo(G_dir_arch_mensages[1]);
+
+
+                string mensage_bienvenida_total = null;
+
+
+                double total_a_pagar_de_todo = 0;
+                string respuesta_a_mandar_mensage = "";
+
+                bool hubo_platillos = false;
+
+
+                //ultimo_mensaje = ultimo_mensaje.ToLower();
+                ultimo_mensaje = ultimo_mensaje.Replace(" ", "");
+                ultimo_mensaje = ultimo_mensaje.Replace(G_caracter_separacion_funciones_espesificas[2] + G_caracter_separacion_funciones_espesificas[2], "\r\n");
+                ultimo_mensaje = ultimo_mensaje.Replace(G_caracter_separacion_funciones_espesificas[2], "\r\n");
+                string[] lineas_del_mensaje = ultimo_mensaje.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                for (int j = 0; j < lineas_del_mensaje.Length; j++)
                 {
-                    nombre_Del_que_envio_el_mensage = G_mod_cont;
-                    G_mod_cont = null;
-                }
 
-                if (G_mod_mens != null)
-                {
-                    lineas_del_mensaje = G_mod_mens;
-                    G_mod_mens = null;
-                }
-                //-------------------------------------------------------------------------------------------
+                    bool si_confirmo = confirmaciones_de_usuarios_confirmadores_o_funciones_extras(manejadores, esperar, nombre_Del_que_envio_el_mensage, lineas_del_mensaje, ":");
+                    //aqui si hay modificaciones en el mensage-----------------------------------------------------------
 
-                mensaje_de_productos_a_enviar = op_tex.concatenacion_filas_de_un_arreglo(Tex_base.GG_base_arreglo_de_arreglos[indice_productos], true,"\n");
-                mensage_bienvenida_total = mensaje_de_bienvenida_a_enviar + "\n" + mensaje_de_productos_a_enviar + "\n" + mensaje_de_bienvenida_final_a_enviar;
-
-                string[] ultimo_mensaje_espliteado = lineas_del_mensaje[j].Split(':');
-                
-                
-
-                if (si_confirmo == false)
-                {
-                    string contactos = "";
-
-                    if (ultimo_mensaje_espliteado.Length > 1)
+                    if (G_mod_cont != null)
                     {
+                        nombre_Del_que_envio_el_mensage = G_mod_cont;
+                        G_mod_cont = null;
+                    }
 
-                        switch (ultimo_mensaje_espliteado[0])
+                    if (G_mod_mens != null)
+                    {
+                        lineas_del_mensaje = G_mod_mens;
+                        G_mod_mens = null;
+                    }
+                    //-------------------------------------------------------------------------------------------
+
+                    mensaje_de_productos_a_enviar = op_tex.concatenacion_filas_de_un_arreglo(Tex_base.GG_base_arreglo_de_arreglos[indice_productos], true, "\n");
+                    mensage_bienvenida_total = mensaje_de_bienvenida_a_enviar + "\n" + mensaje_de_productos_a_enviar + "\n" + mensaje_de_bienvenida_final_a_enviar;
+
+                    string[] ultimo_mensaje_espliteado = lineas_del_mensaje[j].Split(':');
+
+
+
+                    if (si_confirmo == false)
+                    {
+                        string contactos = "";
+
+                        if (ultimo_mensaje_espliteado.Length > 1)
                         {
-                            case "ubi":
 
-                                contactos = G_contactos_lista_para_mandar_informacion[1, 1] + G_caracter_separacion[0] + G_contactos_lista_para_mandar_informacion[4, 1] + G_caracter_separacion[0] + G_contactos_lista_para_mandar_informacion[5, 1];
-                                respuesta_a_mandar_mensage = nombre_Del_que_envio_el_mensage + "\nubicacion recibida: " + G_caracter_separacion[0] + "\n" + ultimo_mensaje_espliteado[1];
-                                string[] mensage_espliteado=respuesta_a_mandar_mensage.Split('\n');
-                                acumulador_de_mensajes(contactos, respuesta_a_mandar_mensage);
-                                break;
+                            switch (ultimo_mensaje_espliteado[0])
+                            {
+                                case "ubi":
 
-                            case "ext":
-                                contactos = G_contactos_lista_para_mandar_informacion[0, 1] + G_caracter_separacion[0] + G_contactos_lista_para_mandar_informacion[1, 1] + G_caracter_separacion[0] + G_contactos_lista_para_mandar_informacion[4, 1] + G_caracter_separacion[0] + G_contactos_lista_para_mandar_informacion[5, 1];
-                                respuesta_a_mandar_mensage = nombre_Del_que_envio_el_mensage + "\ninformacion extra recibida: " + G_caracter_separacion_funciones_espesificas[0];
+                                    contactos = G_contactos_lista_para_mandar_informacion[1, 1] + G_caracter_separacion[0] + G_contactos_lista_para_mandar_informacion[4, 1] + G_caracter_separacion[0] + G_contactos_lista_para_mandar_informacion[5, 1];
+                                    respuesta_a_mandar_mensage = nombre_Del_que_envio_el_mensage + "\nubicacion recibida: " + G_caracter_separacion[0] + "\n" + ultimo_mensaje_espliteado[1];
+                                    string[] mensage_espliteado = respuesta_a_mandar_mensage.Split('\n');
+                                    acumulador_de_mensajes(contactos, respuesta_a_mandar_mensage);
+                                    break;
 
-                                acumulador_de_mensajes(contactos, respuesta_a_mandar_mensage);
+                                case "ext":
+                                    contactos = G_contactos_lista_para_mandar_informacion[0, 1] + G_caracter_separacion[0] + G_contactos_lista_para_mandar_informacion[1, 1] + G_caracter_separacion[0] + G_contactos_lista_para_mandar_informacion[4, 1] + G_caracter_separacion[0] + G_contactos_lista_para_mandar_informacion[5, 1];
+                                    respuesta_a_mandar_mensage = nombre_Del_que_envio_el_mensage + "\ninformacion extra recibida: " + G_caracter_separacion_funciones_espesificas[0];
 
-                                break;
-
-                            case "can":
-                                contactos = G_contactos_lista_para_mandar_informacion[0, 1] + G_caracter_separacion[0] + G_contactos_lista_para_mandar_informacion[1, 1] + G_caracter_separacion[0] + G_contactos_lista_para_mandar_informacion[2, 1] + G_caracter_separacion[0] + G_contactos_lista_para_mandar_informacion[4, 1] + G_caracter_separacion[0] + G_contactos_lista_para_mandar_informacion[5, 1] + G_caracter_separacion[0] + G_contactos_lista_para_mandar_informacion[6, 1];
-                                respuesta_a_mandar_mensage = nombre_Del_que_envio_el_mensage + "\ncancelacion recibida: " + G_caracter_separacion_funciones_espesificas[0];
-                                acumulador_de_mensajes(contactos, respuesta_a_mandar_mensage);
-
-                                break;
-
-
-                            default:
-                                try
-                                {
-                                    //el platillo : la cantidad del platillo
-                                    int numero_de_platillo = Convert.ToInt32(ultimo_mensaje_espliteado[0]);
-                                    Double cantidad_de_platillos = Convert.ToDouble(ultimo_mensaje_espliteado[1]);
-                                    for (int k = G_donde_inicia_la_tabla; k < Tex_base.GG_base_arreglo_de_arreglos[indice_productos].Length; k++)
-                                    {
-                                        string[] productos = Tex_base.GG_base_arreglo_de_arreglos[indice_productos][k].Split(G_caracter_separacion[0][0]);
-
-                                        if (numero_de_platillo == k)
-                                        {
-
-                                            double total = Convert.ToDouble(productos[1]) * cantidad_de_platillos;
-                                            total_a_pagar_de_todo = total_a_pagar_de_todo + total;
-                                            precio_a_pagar_por_producto[numero_de_platillo] = precio_a_pagar_por_producto[numero_de_platillo] + total;
-                                            cantidad_de_productos[numero_de_platillo] = cantidad_de_productos[numero_de_platillo] + cantidad_de_platillos;
-                                        }
-
-                                        nombre_de_productos[k] = productos[0];
-                                        precio_unitario[k] = Convert.ToDouble(productos[1]);
-                                    }
-                                    hubo_platillos = true;
-                                }
-                                catch (Exception)
-                                {
-                                    acumulador_de_mensajes(nombre_Del_que_envio_el_mensage, mensage_bienvenida_total);
-                                    // error manda mensaje de bienvenvenida y mensage a registros
-                                    contactos = G_contactos_lista_para_mandar_informacion[5, 1];
-                                    respuesta_a_mandar_mensage = nombre_Del_que_envio_el_mensage + "\n" + ultimo_mensaje + "\n" + "------------------------------------------------------------------------";
                                     acumulador_de_mensajes(contactos, respuesta_a_mandar_mensage);
 
+                                    break;
+
+                                case "can":
+                                    contactos = G_contactos_lista_para_mandar_informacion[0, 1] + G_caracter_separacion[0] + G_contactos_lista_para_mandar_informacion[1, 1] + G_caracter_separacion[0] + G_contactos_lista_para_mandar_informacion[2, 1] + G_caracter_separacion[0] + G_contactos_lista_para_mandar_informacion[4, 1] + G_caracter_separacion[0] + G_contactos_lista_para_mandar_informacion[5, 1] + G_caracter_separacion[0] + G_contactos_lista_para_mandar_informacion[6, 1];
+                                    respuesta_a_mandar_mensage = nombre_Del_que_envio_el_mensage + "\ncancelacion recibida: " + G_caracter_separacion_funciones_espesificas[0];
+                                    acumulador_de_mensajes(contactos, respuesta_a_mandar_mensage);
+
+                                    break;
+
+
+                                default:
+                                    try
+                                    {
+                                        //el platillo : la cantidad del platillo
+                                        int numero_de_platillo = Convert.ToInt32(ultimo_mensaje_espliteado[0]);
+                                        Double cantidad_de_platillos = Convert.ToDouble(ultimo_mensaje_espliteado[1]);
+                                        for (int k = G_donde_inicia_la_tabla; k < Tex_base.GG_base_arreglo_de_arreglos[indice_productos].Length; k++)
+                                        {
+                                            string[] productos = Tex_base.GG_base_arreglo_de_arreglos[indice_productos][k].Split(G_caracter_separacion[0][0]);
+
+                                            if (numero_de_platillo == k)
+                                            {
+
+                                                double total = Convert.ToDouble(productos[1]) * cantidad_de_platillos;
+                                                total_a_pagar_de_todo = total_a_pagar_de_todo + total;
+                                                precio_a_pagar_por_producto[numero_de_platillo] = precio_a_pagar_por_producto[numero_de_platillo] + total;
+                                                cantidad_de_productos[numero_de_platillo] = cantidad_de_productos[numero_de_platillo] + cantidad_de_platillos;
+                                            }
+
+                                            nombre_de_productos[k] = productos[0];
+                                            precio_unitario[k] = Convert.ToDouble(productos[1]);
+                                        }
+                                        hubo_platillos = true;
+                                    }
+                                    catch (Exception)
+                                    {
+                                        acumulador_de_mensajes(nombre_Del_que_envio_el_mensage, mensage_bienvenida_total);
+                                        // error manda mensaje de bienvenvenida y mensage a registros
+                                        contactos = G_contactos_lista_para_mandar_informacion[5, 1];
+                                        respuesta_a_mandar_mensage = nombre_Del_que_envio_el_mensage + "\n" + ultimo_mensaje + "\n" + "------------------------------------------------------------------------";
+                                        acumulador_de_mensajes(contactos, respuesta_a_mandar_mensage);
+
+
+                                    }
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            acumulador_de_mensajes(nombre_Del_que_envio_el_mensage, mensage_bienvenida_total);
+                            // error manda mensaje de bienvenvenida y mensage a registros
+                            contactos = G_contactos_lista_para_mandar_informacion[5, 1];
+                            respuesta_a_mandar_mensage = nombre_Del_que_envio_el_mensage + "\n" + ultimo_mensaje + "\n" + "------------------------------------------------------------------------";
+                            acumulador_de_mensajes(contactos, respuesta_a_mandar_mensage);
+                        }
+
+                    }
+                }
+
+
+                string mensage_encargados = "";
+                string mensage_supervisores = "";
+                string mensage_repartidores = "";
+                string mensage_contadores = "";
+                string mensage_tesorero = "";
+                string mensage_confirmadores = "";
+
+                string respuesta_de_mensaje = "";
+
+                string texto_para_registro_foliado = "";
+                bool hubo_pedido = false;
+                for (int i = 0; i < cantidad_de_productos.Length; i++)
+                {
+                    if (cantidad_de_productos[i] != 0)
+                    {
+                        mensage_supervisores = mensage_supervisores + nombre_de_productos[i] + "\ncantidad: " + cantidad_de_productos[i] + " p/u:" + precio_unitario[i] + "  $" + precio_a_pagar_por_producto[i] + "\n";
+                        mensage_repartidores = mensage_repartidores + nombre_de_productos[i] + "\ncantidad: " + cantidad_de_productos[i] + " p/u:" + precio_unitario[i] + "  $" + precio_a_pagar_por_producto[i] + "\n";
+                        mensage_encargados = mensage_encargados + nombre_de_productos[i] + "\ncantidad: " + cantidad_de_productos[i] + "\n";
+                        mensage_contadores = mensage_contadores + "comida \ncantidad: " + cantidad_de_productos[i] + " p/u:" + precio_unitario[i] + "  $" + precio_a_pagar_por_producto[i] + "\n";
+                        mensage_confirmadores = mensage_confirmadores + nombre_de_productos[i] + "\ncantidad: " + cantidad_de_productos[i] + "\n";
+                        mensage_tesorero = mensage_tesorero + nombre_de_productos[i] + "\ncantidad: " + cantidad_de_productos[i] + "\n";
+                        respuesta_de_mensaje = respuesta_de_mensaje + nombre_de_productos[i] + "\ncantidad: " + cantidad_de_productos[i] + " p/u:" + precio_unitario[i] + "  $" + precio_a_pagar_por_producto[i] + "\n";
+
+                        texto_para_registro_foliado = op_tex.concatenacion_caracter_separacion(texto_para_registro_foliado, cantidad_de_productos[i] + G_caracter_separacion[2] + nombre_de_productos[i] + G_caracter_separacion[2] + precio_unitario[i] + G_caracter_separacion[2] + precio_a_pagar_por_producto[i], G_caracter_separacion[1]);
+
+                        hubo_pedido = true;
+
+                    }
+                }
+                if (hubo_pedido)
+                {
+
+
+                    string añomesdiahoraminseg = DateTime.Now.ToString("yyMMddHHmmss");
+                    string folio = generar_folio(añomesdiahoraminseg);
+                    mensage_supervisores = nombre_Del_que_envio_el_mensage + "\n" + mensage_supervisores + "\n total a pagar: " + total_a_pagar_de_todo + "\n" + folio;
+                    mensage_repartidores = nombre_Del_que_envio_el_mensage + "\n" + mensage_repartidores + "\n total a pagar: " + total_a_pagar_de_todo + "\n" + folio;
+                    mensage_confirmadores = nombre_Del_que_envio_el_mensage + "\n" + mensage_confirmadores + "\n total a pagar: " + total_a_pagar_de_todo + "\n" + folio;
+                    mensage_tesorero = nombre_Del_que_envio_el_mensage + "\n" + mensage_tesorero + "\n total a pagar: " + total_a_pagar_de_todo + "\n" + folio;
+
+                    mensage_encargados = mensage_encargados + "\n" + folio;
+                    mensage_contadores = mensage_contadores + "\n total a pagar: " + total_a_pagar_de_todo + "\n" + folio;
+
+                    respuesta_de_mensaje = respuesta_de_mensaje + "\n" + folio;
+
+                    acumulador_de_mensajes(G_contactos_lista_para_mandar_informacion[0, 1], mensage_encargados);
+                    acumulador_de_mensajes(G_contactos_lista_para_mandar_informacion[1, 1], mensage_supervisores);
+                    acumulador_de_mensajes(G_contactos_lista_para_mandar_informacion[2, 1], mensage_contadores);
+                    acumulador_de_mensajes(G_contactos_lista_para_mandar_informacion[4, 1], mensage_repartidores);
+                    acumulador_de_mensajes(G_contactos_lista_para_mandar_informacion[5, 1], mensage_supervisores);
+                    acumulador_de_mensajes(G_contactos_lista_para_mandar_informacion[6, 1], mensage_tesorero);
+                    acumulador_de_mensajes(G_contactos_lista_para_mandar_informacion[9, 1], mensage_confirmadores);
+
+                    registros_y_movimientos_a_confirmar(nombre_Del_que_envio_el_mensage, añomesdiahoraminseg, folio, "" + total_a_pagar_de_todo, texto_para_registro_foliado);
+                }
+                //mandar mensages
+                string[,] mensajes_para_y_mensaje = acumulador_de_mensajes(operacion: "retornar");
+
+                if (mensajes_para_y_mensaje != null)
+                {
+                    for (int i = 0; i < mensajes_para_y_mensaje.GetLength(0); i++)
+                    {
+                        if (mensajes_para_y_mensaje[i, 0] != "usuario_actual")
+                        {
+
+                            for (int k = i + 1; k < mensajes_para_y_mensaje.GetLength(0); k++)
+                            {
+                                if (mensajes_para_y_mensaje[k, 0] == "usuario_actual")
+                                {
+                                    // Almacenar la fila actual en una variable temporal
+                                    string tempUsuario = mensajes_para_y_mensaje[i, 0];
+                                    string tempMensaje = mensajes_para_y_mensaje[i, 1];
+
+                                    // Intercambiar toda la fila
+                                    mensajes_para_y_mensaje[i, 0] = mensajes_para_y_mensaje[k, 0];
+                                    mensajes_para_y_mensaje[i, 1] = mensajes_para_y_mensaje[k, 1];
+                                    mensajes_para_y_mensaje[k, 0] = tempUsuario;
+                                    mensajes_para_y_mensaje[k, 1] = tempMensaje;
 
                                 }
-                                break;
-                        }
-                    }
-                    else
-                    {
-                        acumulador_de_mensajes(nombre_Del_que_envio_el_mensage, mensage_bienvenida_total);
-                        // error manda mensaje de bienvenvenida y mensage a registros
-                        contactos = G_contactos_lista_para_mandar_informacion[5, 1];
-                        respuesta_a_mandar_mensage = nombre_Del_que_envio_el_mensage + "\n" + ultimo_mensaje + "\n" + "------------------------------------------------------------------------";
-                        acumulador_de_mensajes(contactos, respuesta_a_mandar_mensage);
-                    }
-
-                }
-            }
-
-            
-            string mensage_encargados = "";
-            string mensage_supervisores = "";
-            string mensage_repartidores = "";
-            string mensage_contadores = "";
-            string mensage_tesorero = "";
-            string mensage_confirmadores = "";
-
-            string respuesta_de_mensaje = "";
-
-            string texto_para_registro_foliado = "";
-            bool hubo_pedido = false;
-            for (int i = 0; i < cantidad_de_productos.Length; i++)
-            {
-                if (cantidad_de_productos[i] != 0)
-                {
-                    mensage_supervisores = mensage_supervisores + nombre_de_productos[i] + "\ncantidad: " + cantidad_de_productos[i] + " p/u:" + precio_unitario[i] + "  $" + precio_a_pagar_por_producto[i] + "\n";
-                    mensage_repartidores = mensage_repartidores + nombre_de_productos[i] + "\ncantidad: " + cantidad_de_productos[i] + " p/u:" + precio_unitario[i] + "  $" + precio_a_pagar_por_producto[i] + "\n";
-                    mensage_encargados = mensage_encargados + nombre_de_productos[i] + "\ncantidad: " + cantidad_de_productos[i] + "\n";
-                    mensage_contadores = mensage_contadores + "comida \ncantidad: " + cantidad_de_productos[i] + " p/u:" + precio_unitario[i] + "  $" + precio_a_pagar_por_producto[i] + "\n";
-                    mensage_confirmadores = mensage_confirmadores + nombre_de_productos[i] + "\ncantidad: " + cantidad_de_productos[i] + "\n";
-                    mensage_tesorero = mensage_tesorero + nombre_de_productos[i] + "\ncantidad: " + cantidad_de_productos[i] + "\n";
-                    respuesta_de_mensaje = respuesta_de_mensaje + nombre_de_productos[i] + "\ncantidad: " + cantidad_de_productos[i] + " p/u:" + precio_unitario[i] + "  $" + precio_a_pagar_por_producto[i] + "\n";
-
-                    texto_para_registro_foliado = op_tex.concatenacion_caracter_separacion(texto_para_registro_foliado, cantidad_de_productos[i] + G_caracter_separacion[2] + nombre_de_productos[i] + G_caracter_separacion[2] + precio_unitario[i] + G_caracter_separacion[2] + precio_a_pagar_por_producto[i], G_caracter_separacion[1]);
-
-                    hubo_pedido = true;
-
-                }
-            }
-            if (hubo_pedido)
-            {
-
-
-                string añomesdiahoraminseg = DateTime.Now.ToString("yyMMddHHmmss");
-                string folio = generar_folio(añomesdiahoraminseg);
-                mensage_supervisores = nombre_Del_que_envio_el_mensage + "\n" + mensage_supervisores + "\n total a pagar: " + total_a_pagar_de_todo + "\n" + folio;
-                mensage_repartidores = nombre_Del_que_envio_el_mensage + "\n" + mensage_repartidores + "\n total a pagar: " + total_a_pagar_de_todo + "\n" + folio;
-                mensage_confirmadores = nombre_Del_que_envio_el_mensage + "\n" + mensage_confirmadores + "\n total a pagar: " + total_a_pagar_de_todo + "\n" + folio;
-                mensage_tesorero = nombre_Del_que_envio_el_mensage + "\n" + mensage_tesorero + "\n total a pagar: " + total_a_pagar_de_todo + "\n" + folio;
-
-                mensage_encargados = mensage_encargados + "\n" + folio;
-                mensage_contadores = mensage_contadores + "\n total a pagar: " + total_a_pagar_de_todo + "\n" + folio;
-
-                respuesta_de_mensaje = respuesta_de_mensaje + "\n" + folio;
-
-                acumulador_de_mensajes(G_contactos_lista_para_mandar_informacion[0, 1], mensage_encargados);
-                acumulador_de_mensajes(G_contactos_lista_para_mandar_informacion[1, 1], mensage_supervisores);
-                acumulador_de_mensajes(G_contactos_lista_para_mandar_informacion[2, 1], mensage_contadores);
-                acumulador_de_mensajes(G_contactos_lista_para_mandar_informacion[4, 1], mensage_repartidores);
-                acumulador_de_mensajes(G_contactos_lista_para_mandar_informacion[5, 1], mensage_supervisores);
-                acumulador_de_mensajes(G_contactos_lista_para_mandar_informacion[6, 1], mensage_tesorero);
-                acumulador_de_mensajes(G_contactos_lista_para_mandar_informacion[9, 1], mensage_confirmadores);
-
-                registros_y_movimientos_a_confirmar(nombre_Del_que_envio_el_mensage, añomesdiahoraminseg, folio, "" + total_a_pagar_de_todo, texto_para_registro_foliado);
-            }
-            //mandar mensages
-            string[,] mensajes_para_y_mensaje = acumulador_de_mensajes(operacion: "retornar");
-            
-
-            
-            
-            if (mensajes_para_y_mensaje != null)
-            {
-                for (int i = 0; i < mensajes_para_y_mensaje.GetLength(0); i++)
-                {
-                    if (mensajes_para_y_mensaje[i, 0] != "usuario_actual")
-                    {
-
-                        for (int k = i + 1; k < mensajes_para_y_mensaje.GetLength(0); k++)
-                        {
-                            if (mensajes_para_y_mensaje[k, 0] == "usuario_actual")
-                            {
-                                // Almacenar la fila actual en una variable temporal
-                                string tempUsuario = mensajes_para_y_mensaje[i, 0];
-                                string tempMensaje = mensajes_para_y_mensaje[i, 1];
-
-                                // Intercambiar toda la fila
-                                mensajes_para_y_mensaje[i, 0] = mensajes_para_y_mensaje[k, 0];
-                                mensajes_para_y_mensaje[i, 1] = mensajes_para_y_mensaje[k, 1];
-                                mensajes_para_y_mensaje[k, 0] = tempUsuario;
-                                mensajes_para_y_mensaje[k, 1] = tempMensaje;
-
                             }
                         }
                     }
-                }
 
-                for (int i = 0; i < mensajes_para_y_mensaje.GetLength(0); i++)
-                {
-                    mandar_mensage_usuarios(manejadores, esperar, mensajes_para_y_mensaje[i, 0], mensajes_para_y_mensaje[i, 1]);
+                    for (int i = 0; i < mensajes_para_y_mensaje.GetLength(0); i++)
+                    {
+                        mandar_mensage_usuarios(manejadores, esperar, mensajes_para_y_mensaje[i, 0], mensajes_para_y_mensaje[i, 1]);
+                    }
                 }
             }
+
+            Actions action = new Actions(manejadores);
+            action.SendKeys(Keys.Escape).Perform();
 
         }
 
@@ -778,7 +784,7 @@ namespace chatbot_wathsapp.clases
                                         if ("venta" == movimiento_a_confirmar[3])
                                         {
                                             mandar_mensage(esperar, "mensage enviado a la persona del pedido");
-                                            mandar_mensage_usuarios(manejadores, esperar, movimiento_a_confirmar[6], "esta en proceso tu pedido tarda entre 20 y 40 minutos en llegar\n" + movimiento_a_confirmar[0] + "\n------------------------------------------------");
+                                            mandar_mensage_usuarios(manejadores, esperar, movimiento_a_confirmar[6], "esta en proceso tu pedido\n" + movimiento_a_confirmar[0] + "\n------------------------------------------------");
 
                                         }
                                     }
