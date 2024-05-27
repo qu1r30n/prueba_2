@@ -260,8 +260,8 @@ namespace chatbot_wathsapp.clases
                     }
                     //-------------------------------------------------------------------------------------------
 
-                    mensaje_de_productos_a_enviar = op_tex.concatenacion_filas_de_un_arreglo(Tex_base.GG_base_arreglo_de_arreglos[indice_productos], true, "\n");
-                    mensage_bienvenida_total = mensaje_de_bienvenida_a_enviar + "\n" + mensaje_de_productos_a_enviar + "\n" + mensaje_de_bienvenida_final_a_enviar;
+                    mensaje_de_productos_a_enviar = op_tex.concatenacion_filas_de_un_arreglo(Tex_base.GG_base_arreglo_de_arreglos[indice_productos], true, "\r\n");
+                    mensage_bienvenida_total = mensaje_de_bienvenida_a_enviar + "\r\n" + mensaje_de_productos_a_enviar + "\r\n" + mensaje_de_bienvenida_final_a_enviar;
 
                     string[] ultimo_mensaje_espliteado = lineas_del_mensaje[j].Split(':');
 
@@ -279,14 +279,14 @@ namespace chatbot_wathsapp.clases
                                 case "ubi":
 
                                     contactos = G_contactos_lista_para_mandar_informacion[1, 1] + G_caracter_separacion[0] + G_contactos_lista_para_mandar_informacion[4, 1] + G_caracter_separacion[0] + G_contactos_lista_para_mandar_informacion[5, 1];
-                                    respuesta_a_mandar_mensage = nombre_Del_que_envio_el_mensage + "\nubicacion recibida: " + G_caracter_separacion[0] + "\n" + ultimo_mensaje_espliteado[1];
+                                    respuesta_a_mandar_mensage = nombre_Del_que_envio_el_mensage + "\r\nubicacion recibida: " + G_caracter_separacion[0] + "\r\n" + ultimo_mensaje_espliteado[1];
                                     string[] mensage_espliteado = respuesta_a_mandar_mensage.Split('\n');
                                     acumulador_de_mensajes(contactos, respuesta_a_mandar_mensage);
                                     break;
 
                                 case "ext":
                                     contactos = G_contactos_lista_para_mandar_informacion[0, 1] + G_caracter_separacion[0] + G_contactos_lista_para_mandar_informacion[1, 1] + G_caracter_separacion[0] + G_contactos_lista_para_mandar_informacion[4, 1] + G_caracter_separacion[0] + G_contactos_lista_para_mandar_informacion[5, 1];
-                                    respuesta_a_mandar_mensage = nombre_Del_que_envio_el_mensage + "\ninformacion extra recibida: " + G_caracter_separacion_funciones_espesificas[0];
+                                    respuesta_a_mandar_mensage = nombre_Del_que_envio_el_mensage + "\r\ninformacion extra recibida: " + G_caracter_separacion_funciones_espesificas[0];
 
                                     acumulador_de_mensajes(contactos, respuesta_a_mandar_mensage);
 
@@ -294,7 +294,7 @@ namespace chatbot_wathsapp.clases
 
                                 case "can":
                                     contactos = G_contactos_lista_para_mandar_informacion[0, 1] + G_caracter_separacion[0] + G_contactos_lista_para_mandar_informacion[1, 1] + G_caracter_separacion[0] + G_contactos_lista_para_mandar_informacion[2, 1] + G_caracter_separacion[0] + G_contactos_lista_para_mandar_informacion[4, 1] + G_caracter_separacion[0] + G_contactos_lista_para_mandar_informacion[5, 1] + G_caracter_separacion[0] + G_contactos_lista_para_mandar_informacion[6, 1];
-                                    respuesta_a_mandar_mensage = nombre_Del_que_envio_el_mensage + "\ncancelacion recibida: " + G_caracter_separacion_funciones_espesificas[0];
+                                    respuesta_a_mandar_mensage = nombre_Del_que_envio_el_mensage + "\r\ncancelacion recibida: " + G_caracter_separacion_funciones_espesificas[0];
                                     acumulador_de_mensajes(contactos, respuesta_a_mandar_mensage);
 
                                     break;
@@ -329,7 +329,7 @@ namespace chatbot_wathsapp.clases
                                         acumulador_de_mensajes(nombre_Del_que_envio_el_mensage, mensage_bienvenida_total);
                                         // error manda mensaje de bienvenvenida y mensage a registros
                                         contactos = G_contactos_lista_para_mandar_informacion[5, 1];
-                                        respuesta_a_mandar_mensage = nombre_Del_que_envio_el_mensage + "\n" + ultimo_mensaje + "\n" + "------------------------------------------------------------------------";
+                                        respuesta_a_mandar_mensage = nombre_Del_que_envio_el_mensage + "\r\n" + ultimo_mensaje + "\r\n" + "------------------------------------------------------------------------";
                                         acumulador_de_mensajes(contactos, respuesta_a_mandar_mensage);
 
 
@@ -342,7 +342,7 @@ namespace chatbot_wathsapp.clases
                             acumulador_de_mensajes(nombre_Del_que_envio_el_mensage, mensage_bienvenida_total);
                             // error manda mensaje de bienvenvenida y mensage a registros
                             contactos = G_contactos_lista_para_mandar_informacion[5, 1];
-                            respuesta_a_mandar_mensage = nombre_Del_que_envio_el_mensage + "\n" + ultimo_mensaje + "\n" + "------------------------------------------------------------------------";
+                            respuesta_a_mandar_mensage = nombre_Del_que_envio_el_mensage + "\r\n" + ultimo_mensaje + "\r\n" + "------------------------------------------------------------------------";
                             acumulador_de_mensajes(contactos, respuesta_a_mandar_mensage);
                         }
 
@@ -365,13 +365,13 @@ namespace chatbot_wathsapp.clases
                 {
                     if (cantidad_de_productos[i] != 0)
                     {
-                        mensage_supervisores = mensage_supervisores + nombre_de_productos[i] + "\ncantidad: " + cantidad_de_productos[i] + " p/u:" + precio_unitario[i] + "  $" + precio_a_pagar_por_producto[i] + "\n";
-                        mensage_repartidores = mensage_repartidores + nombre_de_productos[i] + "\ncantidad: " + cantidad_de_productos[i] + " p/u:" + precio_unitario[i] + "  $" + precio_a_pagar_por_producto[i] + "\n";
-                        mensage_encargados = mensage_encargados + nombre_de_productos[i] + "\ncantidad: " + cantidad_de_productos[i] + "\n";
-                        mensage_contadores = mensage_contadores + "comida \ncantidad: " + cantidad_de_productos[i] + " p/u:" + precio_unitario[i] + "  $" + precio_a_pagar_por_producto[i] + "\n";
-                        mensage_confirmadores = mensage_confirmadores + nombre_de_productos[i] + "\ncantidad: " + cantidad_de_productos[i] + "\n";
-                        mensage_tesorero = mensage_tesorero + nombre_de_productos[i] + "\ncantidad: " + cantidad_de_productos[i] + "\n";
-                        respuesta_de_mensaje = respuesta_de_mensaje + nombre_de_productos[i] + "\ncantidad: " + cantidad_de_productos[i] + " p/u:" + precio_unitario[i] + "  $" + precio_a_pagar_por_producto[i] + "\n";
+                        mensage_supervisores = mensage_supervisores + nombre_de_productos[i] + "\r\ncantidad: " + cantidad_de_productos[i] + " p/u:" + precio_unitario[i] + "  $" + precio_a_pagar_por_producto[i] + "\r\n";
+                        mensage_repartidores = mensage_repartidores + nombre_de_productos[i] + "\r\ncantidad: " + cantidad_de_productos[i] + " p/u:" + precio_unitario[i] + "  $" + precio_a_pagar_por_producto[i] + "\r\n";
+                        mensage_encargados = mensage_encargados + nombre_de_productos[i] + "\r\ncantidad: " + cantidad_de_productos[i] + "\r\n";
+                        mensage_contadores = mensage_contadores + "comida \r\ncantidad: " + cantidad_de_productos[i] + " p/u:" + precio_unitario[i] + "  $" + precio_a_pagar_por_producto[i] + "\r\n";
+                        mensage_confirmadores = mensage_confirmadores + nombre_de_productos[i] + "\r\ncantidad: " + cantidad_de_productos[i] + "\r\n";
+                        mensage_tesorero = mensage_tesorero + nombre_de_productos[i] + "\r\ncantidad: " + cantidad_de_productos[i] + "\r\n";
+                        respuesta_de_mensaje = respuesta_de_mensaje + nombre_de_productos[i] + "\r\ncantidad: " + cantidad_de_productos[i] + " p/u:" + precio_unitario[i] + "  $" + precio_a_pagar_por_producto[i] + "\r\n";
 
                         texto_para_registro_foliado = op_tex.concatenacion_caracter_separacion(texto_para_registro_foliado, cantidad_de_productos[i] + G_caracter_separacion[2] + nombre_de_productos[i] + G_caracter_separacion[2] + precio_unitario[i] + G_caracter_separacion[2] + precio_a_pagar_por_producto[i], G_caracter_separacion[1]);
 
@@ -385,15 +385,17 @@ namespace chatbot_wathsapp.clases
 
                     string añomesdiahoraminseg = DateTime.Now.ToString("yyMMddHHmmss");
                     string folio = generar_folio(añomesdiahoraminseg);
-                    mensage_supervisores = nombre_Del_que_envio_el_mensage + "\n" + mensage_supervisores + "\n total a pagar: " + total_a_pagar_de_todo + "\n" + folio;
-                    mensage_repartidores = nombre_Del_que_envio_el_mensage + "\n" + mensage_repartidores + "\n total a pagar: " + total_a_pagar_de_todo + "\n" + folio;
-                    mensage_confirmadores = nombre_Del_que_envio_el_mensage + "\n" + mensage_confirmadores + "\n total a pagar: " + total_a_pagar_de_todo + "\n" + folio;
-                    mensage_tesorero = nombre_Del_que_envio_el_mensage + "\n" + mensage_tesorero + "\n total a pagar: " + total_a_pagar_de_todo + "\n" + folio;
+                    mensage_supervisores = nombre_Del_que_envio_el_mensage + "\r\n" + mensage_supervisores + "\r\n total a pagar: " + total_a_pagar_de_todo + "\r\n" + folio;
+                    mensage_repartidores = nombre_Del_que_envio_el_mensage + "\r\n" + mensage_repartidores + "\r\n total a pagar: " + total_a_pagar_de_todo + "\r\n" + folio;
+                    mensage_confirmadores = nombre_Del_que_envio_el_mensage + "\r\n" + mensage_confirmadores + "\r\n total a pagar: " + total_a_pagar_de_todo + "\r\n" + folio;
+                    mensage_tesorero = nombre_Del_que_envio_el_mensage + "\r\n" + mensage_tesorero + "\r\n total a pagar: " + total_a_pagar_de_todo + "\r\n" + folio;
 
-                    mensage_encargados = mensage_encargados + "\n" + folio;
-                    mensage_contadores = mensage_contadores + "\n total a pagar: " + total_a_pagar_de_todo + "\n" + folio;
+                    mensage_encargados = mensage_encargados + "\r\n" + folio;
+                    mensage_contadores = mensage_contadores + "\r\n total a pagar: " + total_a_pagar_de_todo + "\r\n" + folio;
 
-                    respuesta_de_mensaje = respuesta_de_mensaje + "\n" + folio;
+                    respuesta_de_mensaje = respuesta_de_mensaje + "\r\n" + folio;
+
+                    mandar_mensage_usuarios(manejadores, esperar, nombre_Del_que_envio_el_mensage, respuesta_a_mandar_mensage);
 
                     acumulador_de_mensajes(G_contactos_lista_para_mandar_informacion[0, 1], mensage_encargados);
                     acumulador_de_mensajes(G_contactos_lista_para_mandar_informacion[1, 1], mensage_supervisores);
@@ -539,7 +541,7 @@ namespace chatbot_wathsapp.clases
         WebDriverWait G_esperar2;
         private void mandar_mensage(WebDriverWait esperar, object texto_enviar_arreglo_objeto)
         {
-            string[] texto_enviar_arreglo_string = op_arr.convierte_objeto_a_arreglo(texto_enviar_arreglo_objeto, "\n");
+            string[] texto_enviar_arreglo_string = op_arr.convierte_objeto_a_arreglo(texto_enviar_arreglo_objeto, "\r\n");
 
 
             G_esperar2 = esperar;
@@ -547,7 +549,8 @@ namespace chatbot_wathsapp.clases
 
             string lugar_a_escribir = G_info_de_configuracion_chatbot[5][1];
             var escribir_msg = G_esperar2.Until(manej => manej.FindElement(By.XPath(lugar_a_escribir)));
-            string texto_enviar = string.Join("\n", texto_enviar_arreglo_string);
+            string texto_enviar = op_tex.joineada_paraesida_SIN_NULOS_y_quitador_de_extremos_del_string(texto_enviar_arreglo_string, Keys.Shift + Keys.Enter+Keys.Shift);
+            texto_enviar=texto_enviar.Replace("\n", "");
 
             escribir_msg.SendKeys(texto_enviar);
             Thread.Sleep(3000); // Puedes ajustar el tiempo de espera según tu escenario
@@ -681,8 +684,6 @@ namespace chatbot_wathsapp.clases
                     {
                         int indice_folios = Convert.ToInt32(bas.sacar_indice_del_arreglo_de_direccion(G_dir_para_registros_y_configuraciones[0, 0]));
                         int indice_reg_mov_usuarios = Convert.ToInt32(bas.sacar_indice_del_arreglo_de_direccion(G_dir_para_registros_y_configuraciones[2, 0]));
-                        
-
                         
                     }
                     break;

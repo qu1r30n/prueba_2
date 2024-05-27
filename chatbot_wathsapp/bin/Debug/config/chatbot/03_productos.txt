@@ -1,5 +1,5 @@
 nombre_del_producto|precio
-comida corrida pechuga rellena|75
+pollo en salsa de queso|75
 comida corrida bistec a la mexicana|75
 comida corrida pechuga asada|75
 desayuno tarde club sanwich|50

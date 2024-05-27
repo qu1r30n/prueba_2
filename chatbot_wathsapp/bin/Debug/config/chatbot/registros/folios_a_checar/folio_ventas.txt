@@ -1,0 +1,14 @@
+folio_venta|añomesdiahoraminutosegundo|total|operacion|producto1¬precio1°pedido2¬precio2|vendedor|num_celular_vendedor|repartidor|datos_comprador°datos_comprador|datos_extra1°dato_extra2
+145654240515145654|240515145654|300|venta|4¬comida corrida pechuga rellena¬75¬300|no_es_vendedor|Alex|repartidor|datos_comprador|datos_extras
+150055j240515150055|240515150055|75|venta|1¬comida corrida pechuga rellena¬75¬75|no_es_vendedor|AlliceLiz|repartidor|datos_comprador|datos_extras
+152011240515152011|240515152011|650|venta|13¬desayuno chilaquiles¬50¬650|no_es_vendedor|4m|repartidor|datos_comprador|datos_extras
+152618dft240515152618|240515152618|985|venta|13¬comida corrida pechuga rellena¬75¬975°1¬desayuno cafe¬10¬10|no_es_vendedor|4m|repartidor|datos_comprador|datos_extras
+153657240515153657|240515153657|40|venta|1¬desayuno hotcakes¬40¬40|no_es_vendedor|4m|repartidor|datos_comprador|datos_extras
+105353m240516105353|240516105353|75|venta|1¬comida corrida pechuga rellena¬75¬75|no_es_vendedor|Alex|repartidor|datos_comprador|datos_extras
+115624240517115624|240517115624|35|venta|1¬tarde torta bistek¬35¬35|no_es_vendedor|Gerarda|repartidor|datos_comprador|datos_extras
+121141240517121141|240517121141|85|venta|1¬filet miniong¬85¬85|no_es_vendedor|Ivon|repartidor|datos_comprador|datos_extras
+1207208nc240524120720|240524120720|75|venta|1¬pollo en salsa de queso¬75¬75|no_es_vendedor|Uso|repartidor|datos_comprador|datos_extras
+121813x240524121813|240524121813|75|venta|1¬pollo en salsa de queso¬75¬75|no_es_vendedor|Uso|repartidor|datos_comprador|datos_extras
+122157xxd240524122157|240524122157|75|venta|1¬pollo en salsa de queso¬75¬75|no_es_vendedor|Uso|repartidor|datos_comprador|datos_extras
+122311240524122311|240524122311|150|venta|1¬pollo en salsa de queso¬75¬75°1¬comida corrida bistec a la mexicana¬75¬75|no_es_vendedor|Uso|repartidor|datos_comprador|datos_extras
+122415ay240524122415|240524122415|225|venta|1¬pollo en salsa de queso¬75¬75°2¬comida corrida bistec a la mexicana¬75¬150|no_es_vendedor|Uso|repartidor|datos_comprador|datos_extras
